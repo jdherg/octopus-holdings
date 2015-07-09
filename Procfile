@@ -1,0 +1,1 @@
+web: gunicorn octopusholdings:app --log-file=-
