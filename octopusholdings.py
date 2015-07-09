@@ -13,17 +13,22 @@ with open('emoji_map.json', 'r') as f:
 
 
 @app.route('/')
-@app.route('/<emojicode>')
-def show_emoji(emojicode="trophy"):
-    if emojicode == "random":
+@app.route('/<path:emojicode>')
+def show_emoji(emojicode='trophy'):
+    if emojicode == 'random':
         emojicode = random.choice(list(emoji_aliases.keys()))
-    emojicode = emoji_aliases.get(emojicode, "u1f3c6")
-    return render_template('index.html', code=emojicode)
+    emojistack = emojicode.split('/')
+    if len(emojistack) == 1:
+        emojistack.append('octopus')
+    for i, emoji in enumerate(emojistack):
+        emojistack[i] = emoji_aliases.get(emoji, 'u1f3c6')
+    return render_template('index.html', stack=emojistack)
 
 
 @app.route('/emoji/<filename>')
 def emoji_src(filename):
     return send_from_directory('emoji', filename)
+
 
 if __name__ == '__main__':
     app.debug = True

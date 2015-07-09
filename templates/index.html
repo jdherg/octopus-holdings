@@ -11,9 +11,10 @@
 </style>
 </head>
 <body>
-	<svg viewBox="0 0 128 220" preserveAspectRatio="xMidYMid meet">
-		<image x ="0" y="0" height="128" width="128" xlink:href="emoji/emoji_{{ code }}.svg"/>
-		<image x ="0" y="92" height="128" width="128" xlink:href="emoji/emoji_u1f419.svg"/>
+	<svg viewBox="0 0 128 {{ 128 + 92 * stack|length }}" preserveAspectRatio="xMidYMid meet">
+	{% for emoji in stack %}
+		<image x ="0" y={{ 92 * loop.index0 }} height="128" width="128" xlink:href="/emoji/emoji_{{ emoji }}.svg"/>
+	{% endfor %}
 	</svg>
 </body>
 </html>
