@@ -4,14 +4,14 @@
 <head>
 <title>Octopus Holdings</title>
 <style type="text/css">
-	svg {
+	#emoji_grid {
 		height: 98vh;
 		width: 100%;
 	}
 </style>
 </head>
 <body>
-	<svg viewBox="0 0 128 {{ 128 + 92 * stack|length }}" preserveAspectRatio="xMidYMid meet">
+	<svg id="emoji_grid" viewBox="0 0 128 {{ 128 + 92 * (stack|length - 1) }}" preserveAspectRatio="xMidYMid meet">
 	{% for emoji in stack %}
 		<image x ="0" y={{ 92 * loop.index0 }} height="128" width="128" xlink:href="/emoji/emoji_{{ emoji }}.svg"/>
 	{% endfor %}
