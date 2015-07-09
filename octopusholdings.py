@@ -1,4 +1,5 @@
 import json
+import random
 from flask import Flask, render_template, send_from_directory
 
 app = Flask(__name__)
@@ -13,8 +14,9 @@ with open('emoji_map.json', 'r') as f:
 
 @app.route('/')
 @app.route('/<emojicode>')
-def show_emoji(emojicode="u1f3c6"):
-    print(emojicode, len(emojicode))
+def show_emoji(emojicode="trophy"):
+    if emojicode == "random":
+        emojicode = random.choice(list(emoji_aliases.keys()))
     emojicode = emoji_aliases.get(emojicode, "u1f3c6")
     return render_template('index.html', code=emojicode)
 
