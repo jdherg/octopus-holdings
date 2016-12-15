@@ -17,12 +17,22 @@ with open('emoji_map.json', 'r') as f:
 def show_emoji(emojicode='trophy'):
     if emojicode == 'random':
         emojicode = random.choice(list(emoji_aliases.keys()))
-    emojistack = emojicode.split('/')
-    if len(emojistack) == 1:
-        emojistack.append('octopus')
-    for i, emoji in enumerate(emojistack):
-        emojistack[i] = emoji_aliases.get(emoji, 'u1f3c6')
-    return render_template('index.html', stack=emojistack)
+    emojicode=emojicode.replace(" ", "null")
+    emojistack = [x.split('/') for x in emojicode.split('.')]
+    print(emojistack)
+    encodedemojistack = [[]]
+    if (len(emojistack) == 1 and len(emojistack[0]) == 1):
+        emojistack[0].append('octopus')
+    maxlength = max([len(item) for item in emojistack])
+    for i, sublist in enumerate(emojistack):
+        encodedemojistack.append([])
+        for j, emoji in enumerate(sublist):
+            if emoji == 'random':
+                emoji_ref = emoji_aliases.get(random.choice(list(emoji_aliases.keys())), 'u1f3c6')
+            else:
+                emoji_ref = emoji_aliases.get(emoji, 'u1f3c6')
+            encodedemojistack[i].append(emoji_ref)
+    return render_template('index.html', stack=encodedemojistack, longest=maxlength)
 
 
 @app.route('/emoji/<filename>')
