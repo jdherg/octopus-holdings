@@ -15,7 +15,11 @@ def main():
         shortcodes = json.load(f)
         shortcodes = {d["emoji"]: d for d in shortcodes if "emoji" in d}
     in_files = os.listdir(emoji_folder)
-    in_cps = [noto.search(fname).group() for fname in in_files]
+    in_cps = []
+    for fname in in_files:
+        si = noto.search(fname)
+        if si:
+            in_cps.append(si.group())
     in_emoji = []
     for cp in in_cps:
         cp = cp[1:].split('_')
@@ -24,7 +28,8 @@ def main():
     mappings = {}
     for fname in in_files:
         vals = []
-        in_cps = noto.search(fname).group()
+        if noto.search(fname):
+                in_cps = noto.search(fname).group()
         emoji = "".join([chr(int(char, 16)) for char in in_cps[1:].split('_')])
         vals.append(emoji)
         vals.append(in_cps)
