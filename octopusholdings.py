@@ -19,12 +19,12 @@ load_emoji('custom_emoji_map.json', emoji_aliases)
 @app.route('/')
 @app.route('/<path:emojicode>')
 def show_emoji(emojicode='trophy'):
-    if emojicode == 'random':
-        emojicode = random.choice(list(emoji_aliases.keys()))
     emojistack = emojicode.split('/')
     if len(emojistack) == 1:
         emojistack.append('octopus')
     for i, emoji in enumerate(emojistack):
+        if emoji == 'random':
+            emoji = random.choice(list(emoji_aliases.keys()))
         emojistack[i] = emoji_aliases.get(emoji, 'u1f3c6')
     return render_template('index.html', stack=emojistack)
 
