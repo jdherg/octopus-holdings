@@ -1,0 +1,10 @@
+[
+ {
+  "name": "custom",
+  "rel_path": "custom"
+ },
+ {
+  "name": "noto",
+  "rel_path": "noto"
+ }
+]

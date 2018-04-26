@@ -28,11 +28,11 @@
 </head>
 <body>
 <svg id="emoji_grid" viewBox="0 0 128 {{ 128 + 92 * (stack|length - 1) }}" preserveAspectRatio="xMidYMid meet">
-	{% for emoji in stack %}
-		<image x="0" y={{ 92 * loop.index0 }} height="128" width="128" xlink:href="/emoji/emoji_{{ emoji }}.svg"/>
+	{% for emoji_path in stack %}
+		<image x="0" y={{ 92 * loop.index0 }} height="128" width="128" xlink:href="/emoji/{{ emoji_path }}"/>
 	{% endfor %}
 </svg>
-<footer>Made for the <svg class="footer_svg" viewBox="0 0 128 128"><image x="0" y="0" height="128" width="128" xlink:href="/emoji/emoji_rc.svg" /></svg> community with <svg class="footer_svg" viewBox="0 0 128 128"><image x="0" y="0" height="128" width="128" xlink:href="/emoji/emoji_u1f497.svg" /></svg> by <a href="https://twitter.com/jdherg">@jdherg</a>. <a href="https://github.com/jdherg/octopus-holdings">(Source)</a>
+<footer>Made for the <svg class="footer_svg" viewBox="0 0 128 128"><image x="0" y="0" height="128" width="128" xlink:href="/emoji/custom/emoji_rc.svg" /></svg> community with <svg class="footer_svg" viewBox="0 0 128 128"><image x="0" y="0" height="128" width="128" xlink:href="/emoji/noto/emoji_u1f497.svg" /></svg> by <a href="https://twitter.com/jdherg">@jdherg</a>. <a href="https://github.com/jdherg/octopus-holdings">(Source)</a>
 </footer>
 </body>
 </html>
