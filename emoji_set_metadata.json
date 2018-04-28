@@ -1,10 +1,10 @@
-[
- {
-  "name": "custom",
-  "rel_path": "custom"
- },
- {
-  "name": "noto",
-  "rel_path": "noto"
- }
-]
+{
+    "custom": {
+        "external_path": "",
+        "internal_path": "third_party/misc"
+    },
+    "noto_1": {
+        "external_path": "noto_1",
+        "internal_path": "third_party/noto/noto_1"
+    }
+}
