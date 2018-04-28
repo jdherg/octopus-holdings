@@ -35,7 +35,7 @@ def main():
             emoji_to_alias_mappings[svg_codepoint] = aliases
     with open(output_filename, 'w') as output_file:
         json.dump(emoji_to_alias_mappings, output_file,
-                  ensure_ascii=False, indent=1, sort_keys=True)
+                  ensure_ascii=False, indent=4, sort_keys=True)
 
 if __name__ == '__main__':
     main()
