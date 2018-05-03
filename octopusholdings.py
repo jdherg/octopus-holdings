@@ -36,7 +36,9 @@ for emoji_set_name in reversed(emoji_set_priority):
     emoji_aliases[emoji_set_name] = load_emoji_aliases(
         emoji_set_config[emoji_set_name])
 
-def resolve(alias):
+def resolve(alias, desired_set=None):
+    if desired_set and desired_set in emoji_aliases.keys():
+        return emoji_aliases[desired_set].get(alias) or resolve(alias)
     for set_name in emoji_set_priority:
         if alias in emoji_aliases[set_name]:
             return emoji_aliases[set_name].get(alias)
@@ -46,12 +48,17 @@ def resolve(alias):
 @app.route('/<path:emojicode>')
 def show_emoji(emojicode='tada'):
     emojistack = emojicode.split('/')
+    desired_set = None
+    if emojistack[0] in emoji_set_priority:
+        desired_set = emojistack.pop(0)
+        if not emojistack:
+            emojistack.append("tada")
     if len(emojistack) == 1:
         emojistack.append('octopus')
     for i, emoji in enumerate(emojistack):
         if emoji == 'random':
             emoji = random.choice(list(emoji_aliases.keys()))
-        emojistack[i] = resolve(emoji)
+        emojistack[i] = resolve(emoji, desired_set)
     return render_template('index.html', stack=emojistack)
 
 
