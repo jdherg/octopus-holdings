@@ -3,6 +3,7 @@
     "priority": [
         "custom",
         "noto_1",
+        "noto_2",
         "twemoji_2_6_0"
     ],
     "set_config": {
@@ -15,6 +16,12 @@
         "noto_1": {
             "external_path": "noto_1",
             "internal_path": "third_party/noto/noto_1",
+            "prefix": "emoji_u",
+            "svg_filename_regex": "(?<=emoji_u).+(?=\\.svg)"
+        },
+        "noto_2": {
+            "external_path": "noto_2",
+            "internal_path": "third_party/noto/noto_2",
             "prefix": "emoji_u",
             "svg_filename_regex": "(?<=emoji_u).+(?=\\.svg)"
         },
