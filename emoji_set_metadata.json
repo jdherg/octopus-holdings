@@ -1,10 +1,27 @@
 {
-    "custom": {
-        "external_path": "",
-        "internal_path": "third_party/misc"
-    },
-    "noto_1": {
-        "external_path": "noto_1",
-        "internal_path": "third_party/noto/noto_1"
+    "priority": [
+        "custom",
+        "noto_1",
+        "twemoji_2_6_0"
+    ],
+    "config": {
+        "custom": {
+            "alias_map": "custom_emoji_map.json",
+            "external_path": "",
+            "internal_path": "third_party/misc",
+            "prefix": "emoji_"
+        },
+        "noto_1": {
+            "alias_map": "emoji_map.json",
+            "external_path": "noto_1",
+            "internal_path": "third_party/noto/noto_1",
+            "prefix": "emoji_u"
+        },
+        "twemoji_2_6_0": {
+            "alias_map": "emoji_map.json",
+            "external_path": "twemoji_2_6_0",
+            "internal_path": "third_party/twemoji/twemoji_2_6_0",
+            "prefix": ""
+        }
     }
 }
