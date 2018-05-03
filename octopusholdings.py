@@ -1,5 +1,3 @@
-import json
-import random
 from flask import abort, Flask, render_template, send_from_directory
 import emoji_resolver
 
@@ -18,22 +16,17 @@ def show_emoji(emojicode='tada'):
         emojistack.append('octopus')
     for i, emoji in enumerate(emojistack):
         if emoji == 'random':
-            emoji = random.choice(list(emoji_aliases.keys()))
+            emoji = emoji_resolver.random_emoji()
         emojistack[i] = emoji_resolver.resolve(emoji, desired_set)
     return render_template('index.html', stack=emojistack)
 
 
 @app.route('/emoji/<path:filepath>')
 def emoji_src(filepath):
-    if filepath.find('/') == -1:
-        path, base = ("", filepath)
-    else:
-        path, base = filepath.rsplit('/', 1)
-    if path in emoji_set_paths:
-        return send_from_directory(emoji_set_paths[path], base)
-    else:
-        abort(404)
-
+    if emoji_resolver.resolve_to_internal_path(filepath):
+        path, base = emoji_resolver.resolve_to_internal_path(filepath)
+        return send_from_directory(path, base)
+    abort(404)
 
 if __name__ == '__main__':
     app.debug = True
