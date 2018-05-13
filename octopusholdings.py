@@ -6,20 +6,26 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/<path:emojicode>')
 def show_emoji(emojicode='tada'):
-    emojistack = emojicode.split('/')
-    desired_set = None
-    if emoji_resolver.is_emoji_set(emojistack[0]):
-        desired_set = emojistack.pop(0)
-        if not emojistack:
-            emojistack.append("tada")
-    if len(emojistack) == 1:
-        emojistack.append('octopus')
-    for i, emoji in enumerate(emojistack):
-        if emoji == 'random':
-            emoji = emoji_resolver.random_emoji()
-        emojistack[i] = emoji_resolver.resolve(emoji, desired_set)
+    in_stack = emojicode.split('/')
+    current_desired_set = None
+    processed_stack = list()
+    # Process commands. (Just desired emoji set for now.)
+    for token in in_stack:
+        if emoji_resolver.is_emoji_set(token):
+            current_desired_set = token
+        else:
+            if token == 'random':
+                token = emoji_resolver.random_emoji()
+            processed_stack.append((token, current_desired_set))
+    # Fill in defaults.
+    if not processed_stack:
+        processed_stack.append(("tada", current_desired_set))
+    if len(processed_stack) == 1:
+        processed_stack.append(("octopus", current_desired_set))
+    # Turn it into paths.
+    emojistack = [emoji_resolver.resolve(alias, desired_set)
+                  for alias, desired_set in processed_stack]
     return render_template('index.html', stack=emojistack)
-
 
 @app.route('/emoji/<path:filepath>')
 def emoji_src(filepath):
