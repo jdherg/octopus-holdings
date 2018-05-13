@@ -11,7 +11,8 @@
             "alias_map": "custom_emoji_map.json",
             "external_path": "",
             "internal_path": "third_party/misc",
-            "prefix": "emoji_"
+            "prefix": "emoji_",
+            "svg_filename_regex": "(?<=emoji_).+(?=\\.svg)"
         },
         "noto_1": {
             "external_path": "noto_1",
