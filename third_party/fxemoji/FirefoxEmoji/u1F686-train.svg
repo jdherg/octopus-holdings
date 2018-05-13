@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<g id="Layer_2">
+	<rect x="96" y="64" fill="#009E83" width="320" height="368"/>
+</g>
+<g id="Layer_3">
+	<polygon fill="#F9F9F7" points="416,64 96,64 96,183 96.019,183 96,183.019 256,343.019 416,183.019 415.981,183 416,183 	"/>
+</g>
+<g id="Layer_4">
+	<path fill="#FFD469" d="M208,340c0,11.046-8.954,20-20,20s-20-8.954-20-20s8.954-20,20-20S208,328.954,208,340z M324,320
+		c-11.046,0-20,8.954-20,20s8.954,20,20,20s20-8.954,20-20S335.046,320,324,320z M144,328c-6.627,0-12,5.373-12,12s5.373,12,12,12
+		s12-5.373,12-12S150.627,328,144,328z M366,328c-6.627,0-12,5.373-12,12s5.373,12,12,12s12-5.373,12-12S372.627,328,366,328z"/>
+</g>
+<g id="Layer_5">
+	<path fill="#132028" d="M129,496l64-64h32l-16,64H129z M384,496l-64-64h-32l16,64H384z M168,128h-52v96h52V128z M176,224h160v-96
+		H176V224z M344,128v96h52v-96H344z"/>
+</g>
+<g id="Layer_6">
+	<path fill="#009E83" d="M320.019,64H191.981H96v368h320V64H320.019z M408,424H104V72h95.981L256,128.019L312.019,72H408V424z"/>
+</g>
+<g id="Layer_7">
+	<rect x="96" y="384" fill="#575A5B" width="320" height="48"/>
+</g>
+</svg>
