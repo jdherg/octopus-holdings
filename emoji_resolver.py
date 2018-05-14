@@ -17,7 +17,9 @@ EMOJI_SET_PRIORITY, EMOJI_SET_CONFIG, EMOJI_SET_PATHS = load_emoji_set_config()
 def load_emoji_set_svgs(set_config):
     emoji_to_svgs = dict()
     set_emoji = set()
-    external_prefix = set_config["external_path"] + "/" 
+    external_prefix = ""
+    if set_config["external_path"]:
+        external_prefix = set_config["external_path"] + "/" 
     svg_folder = set_config["internal_path"]
     svg_filename_regex = re.compile(set_config["svg_filename_regex"])
     svg_folder_filenames = os.listdir(svg_folder)
