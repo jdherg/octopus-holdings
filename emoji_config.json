@@ -4,7 +4,8 @@
         "custom",
         "noto_1",
         "noto_2",
-        "twemoji_2_6_0"
+        "twemoji_2_6_0",
+        "fxemoji"
     ],
     "set_config": {
         "custom": {
@@ -12,6 +13,11 @@
             "external_path": "",
             "internal_path": "third_party/misc",
             "svg_filename_regex": "(?<=emoji_).+(?=\\.svg)"
+        },
+        "fxemoji": {
+            "external_path": "fxemoji",
+            "internal_path": "third_party/fxemoji/FirefoxEmoji",
+            "svg_filename_regex": "(?<=u).+(?=-.*\\.svg)"
         },
         "noto_1": {
             "external_path": "noto_1",
