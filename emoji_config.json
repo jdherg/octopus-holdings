@@ -1,5 +1,5 @@
 {
-    "gemoji_alias_file": "third_party/gemoji/gemoji.json",
+    "gemoji_alias_file": "third_party/gemoji/emoji.json",
     "priority": [
         "custom",
         "noto_1",
