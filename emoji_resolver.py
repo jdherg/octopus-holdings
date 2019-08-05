@@ -130,7 +130,7 @@ def resolve_to_internal_path(external_path):
     return None
 
 def random_emoji():
-    return random.choice(ALL_RESOLVED_EMOJI)
+    return random.sample(ALL_RESOLVED_EMOJI, 1)[0]
 
 if __name__ == '__main__':
     print(generate_emoji_report())
