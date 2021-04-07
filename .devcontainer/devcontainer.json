@@ -1,6 +1,6 @@
 {
 	"name": "Octopus Holdings",
-	"image": "mcr.microsoft.com/vscode/devcontainers/python:3.7",
+	"image": "mcr.microsoft.com/vscode/devcontainers/python:3.9",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
