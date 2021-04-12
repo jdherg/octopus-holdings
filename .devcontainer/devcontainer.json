@@ -1,11 +1,12 @@
 {
 	"name": "Octopus Holdings",
 	"image": "mcr.microsoft.com/vscode/devcontainers/python:3.9",
-
 	// Set *default* container specific settings.json values on container create.
-	"settings": { 
+	"settings": {
+		"editor.formatOnSave": true,
 		"terminal.integrated.shell.linux": "/bin/bash",
 		"python.pythonPath": "/usr/local/bin/python",
+		"python.formatting.provider": "black",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
 		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
@@ -18,19 +19,17 @@
 		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
 		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
 	},
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-python.python",
-        "ms-python.vscode-pylance",
+		"ms-python.vscode-pylance",
 	],
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [5000],
-
+	"forwardPorts": [
+		5000
+	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "pip3 install --user -r requirements.txt; pipx install honcho",
-
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }
