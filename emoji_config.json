@@ -34,5 +34,6 @@
             "internal_path": "third_party/twemoji/twemoji_2_6_0",
             "svg_filename_regex": ".+(?=\\.svg)"
         }
-    }
+    },
+    "unicode_test_file": "third_party/unicode-org/13.1/emoji-test.txt"
 }
