@@ -1,10 +1,11 @@
 from collections import Counter, namedtuple
 import json
 import re
-from typing import Dict, List, Sequence, Union
+from typing import Sequence, Union
 
 Emoji = namedtuple(
-    "Emoji", ["literal", "name", "code_points", "status", "group", "subgroup"]
+    "Emoji",
+    ["literal", "name", "code_points", "status", "group", "subgroup", "version"],
 )
 
 EMOJI_LINE = re.compile(
@@ -29,11 +30,11 @@ SUBGROUP_LINE = re.compile(
 
 
 def parse_unicode_test_file(
-    lines: List[str],
-) -> tuple[Dict[str, Emoji], Dict[str, int], Dict[str, int]]:
-    emoji: Dict[str, Emoji] = {}
-    group_counts: Dict[str, int] = {}
-    status_counts: Dict[str, int] = {}
+    lines: list[str],
+) -> tuple[dict[str, Emoji], dict[str, int], dict[str, int]]:
+    emoji: dict[str, Emoji] = {}
+    group_counts: dict[str, int] = {}
+    status_counts: dict[str, int] = {}
     group = ""
     subgroup = ""
     for line in [line.strip() for line in lines if line.strip() != ""]:
@@ -57,6 +58,7 @@ def parse_unicode_test_file(
                 name=match.group("name"),
                 status=match.group("status"),
                 subgroup=subgroup,
+                version=match.group("version"),
             )
     return (emoji, group_counts, status_counts)
 
@@ -71,7 +73,7 @@ EMOJI_CATALOG = PARSED_EMOJI_METADATA[0]
 
 
 def check_counts(
-    category: str, actual_func, expected_counts: Dict[str, int], log=False
+    category: str, actual_func, expected_counts: dict[str, int], log=False
 ):
     actual_counts = Counter(map(actual_func, EMOJI_CATALOG.values()))
     if log:
