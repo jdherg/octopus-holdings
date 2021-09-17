@@ -4,6 +4,7 @@ import random
 import re
 
 from emoji.config import EMOJI_CONFIG
+from emoji.image_catalog import load_emoji_set_svgs
 
 
 def load_emoji_set_config():
@@ -14,30 +15,6 @@ def load_emoji_set_config():
 
 
 EMOJI_SET_PRIORITY, EMOJI_SET_CONFIG, EMOJI_SET_PATHS = load_emoji_set_config()
-
-
-def load_emoji_set_svgs(set_config):
-    emoji_to_svgs = dict()
-    set_emoji = set()
-    external_prefix = ""
-    if set_config["external_path"]:
-        external_prefix = set_config["external_path"] + "/"
-    svg_folder = set_config["internal_path"]
-    svg_filename_regex = re.compile(set_config["svg_filename_regex"])
-    svg_folder_filenames = os.listdir(svg_folder)
-    for filename in svg_folder_filenames:
-        if svg_filename_regex.search(filename):
-            svg_codepoint = svg_filename_regex.search(filename).group()
-            if "alias_map" in set_config:
-                emoji = svg_codepoint
-            else:
-                emoji = "".join(
-                    [chr(int(char, 16)) for char in re.split(r"[\-_]", svg_codepoint)]
-                )
-            emoji_path = external_prefix + filename
-            emoji_to_svgs[emoji] = emoji_path
-            set_emoji.add(emoji)
-    return emoji_to_svgs, set_emoji
 
 
 def load_all_emoji_svgs():
