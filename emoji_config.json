@@ -4,7 +4,7 @@
         "custom",
         "noto_1",
         "noto_2",
-        "twemoji_2_6_0",
+        "twemoji_1",
         "fxemoji"
     ],
     "set_config": {
@@ -29,9 +29,9 @@
             "internal_path": "third_party/noto/noto_2",
             "svg_filename_regex": "(?<=emoji_u).+(?=\\.svg)"
         },
-        "twemoji_2_6_0": {
-            "external_path": "twemoji_2_6_0",
-            "internal_path": "third_party/twemoji/twemoji_2_6_0",
+        "twemoji_1": {
+            "external_path": "twemoji_1",
+            "internal_path": "third_party/twemoji/twemoji_1",
             "svg_filename_regex": ".+(?=\\.svg)"
         }
     },
