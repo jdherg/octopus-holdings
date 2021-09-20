@@ -1,6 +1,6 @@
 import os
 from flask import abort, Flask, render_template, send_from_directory
-import emoji_resolver
+import emoji.emoji_resolver as emoji_resolver
 
 app = Flask(__name__)
 OCTOPUS_HOLDINGS_ENV = os.environ.get("OCTOPUS_HOLDINGS_ENV")

@@ -3,8 +3,7 @@ import os
 import random
 import re
 
-with open("emoji_config.json", "r") as emoji_config_file:
-    EMOJI_CONFIG = json.load(emoji_config_file)
+from emoji.config import EMOJI_CONFIG
 
 
 def load_emoji_set_config():
@@ -146,7 +145,3 @@ def resolve_to_internal_path(external_path):
 
 def random_emoji():
     return random.sample(ALL_RESOLVED_EMOJI, 1)[0]
-
-
-if __name__ == "__main__":
-    print(generate_emoji_report())
