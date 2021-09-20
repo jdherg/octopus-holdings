@@ -1,7 +1,8 @@
 from collections import Counter, namedtuple
-import json
 import re
 from typing import Sequence, Union
+
+from emoji.config import EMOJI_CONFIG
 
 Emoji = namedtuple(
     "Emoji",
@@ -63,45 +64,9 @@ def parse_unicode_test_file(
     return (emoji, group_counts, status_counts)
 
 
-with open("emoji_config.json", "r") as emoji_config_file:
-    UNICODE_TEST_FILE_PATH = json.load(emoji_config_file)["unicode_test_file"]
+UNICODE_TEST_FILE_PATH = EMOJI_CONFIG["unicode_test_file"]
 
 with open(UNICODE_TEST_FILE_PATH, "r") as unicode_emoji_test_file:
     PARSED_EMOJI_METADATA = parse_unicode_test_file(unicode_emoji_test_file.readlines())
 
 EMOJI_CATALOG = PARSED_EMOJI_METADATA[0]
-
-
-def check_counts(
-    category: str, actual_func, expected_counts: dict[str, int], log=False
-):
-    actual_counts = Counter(map(actual_func, EMOJI_CATALOG.values()))
-    if log:
-        print(
-            f"Checking {category} counts ({sum(expected_counts.values())} expected total)"
-        )
-    for name, actual in actual_counts.items():
-        expected = expected_counts[name]
-        assert (
-            expected == actual
-        ), f"Expected {expected} for {category} {name}, got {actual} instead."
-        if log:
-            print(f"  {name} : {actual}")
-
-
-def main():
-    given_group_counts = PARSED_EMOJI_METADATA[1]
-    given_group_total = sum(given_group_counts.values())
-    given_status_counts = PARSED_EMOJI_METADATA[2]
-    given_status_total = sum(given_status_counts.values())
-    assert given_group_total == given_status_total, (
-        "Given status and group counts do not match: "
-        f"{given_group_total} groups and {given_status_total} statuses"
-    )
-    check_counts("group", lambda x: x.group, given_group_counts, True)
-    check_counts("status", lambda x: x.status, given_status_counts, True)
-    print(f"Metadata for {len(EMOJI_CATALOG.keys())} entries parsed.")
-
-
-if __name__ == "__main__":
-    main()

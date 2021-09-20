@@ -9,7 +9,7 @@
     ],
     "set_config": {
         "custom": {
-            "alias_map": "custom_emoji_map.json",
+            "alias_map": "emoji/custom_emoji_map.json",
             "external_path": "",
             "internal_path": "third_party/misc",
             "svg_filename_regex": "(?<=emoji_).+(?=\\.svg)"
