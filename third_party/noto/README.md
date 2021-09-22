@@ -1,4 +1,4 @@
 Snapshots of subsets of Google's [noto-emoji project](https://www.github.com/googlefonts/noto-emoji).
 
 noto_1 is as of commit f2a4f72b.
-noto_2 is as of commit e7490e1.
+noto_2 is as of commit c05b4b47 (tag v2.028).

@@ -1,1 +1,16 @@
-<svg enable-background="new 0 0 128 128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><linearGradient id="d" x1="64" x2="64" y1="36.833" y2="104.33" gradientUnits="userSpaceOnUse"><stop stop-color="#FFC107" offset="0"/><stop stop-color="#FFD54F" offset="1"/></linearGradient><path d="m120 104h-112c-2.21 0-4-1.79-4-4v-72c0-2.21 1.79-4 4-4h112c2.21 0 4 1.79 4 4v72c0 2.21-1.79 4-4 4z" fill="url(#d)"/><linearGradient id="c" x1="64" x2="64" y1="8.4562" y2="72.154" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE082" offset="0"/><stop stop-color="#FFCA28" offset=".9931"/></linearGradient><path d="M124,30.16V28c0-2.21-1.79-4-4-4H8c-2.21,0-4,1.79-4,4v2.02l59.91,46.13L124,30.16z" fill="url(#c)"/><defs><path id="b" d="m120 104h-112c-2.21 0-4-1.79-4-4v-72c0-2.21 1.79-4 4-4h112c2.21 0 4 1.79 4 4v72c0 2.21-1.79 4-4 4z"/></defs><clipPath id="a"><use xlink:href="#b"/></clipPath><g clip-path="url(#a)" fill="none" stroke="#FFB300" stroke-miterlimit="10" stroke-width="3"><line x1="43.01" x2="-.19" y1="60.76" y2="107.93"/><line x1="84.88" x2="128" y1="60.66" y2="108.12"/></g><polyline points="0.08 27.78 63.91 76.14 127.92 27.94" clip-path="url(#a)" fill="none" stroke="#FFB300" stroke-miterlimit="10" stroke-width="3"/><g opacity=".2"><path d="m120 27c0.55 0 1 0.45 1 1v72c0 0.55-0.45 1-1 1h-112c-0.55 0-1-0.45-1-1v-72c0-0.55 0.45-1 1-1h112m0-3h-112c-2.21 0-4 1.79-4 4v72c0 2.21 1.79 4 4 4h112c2.21 0 4-1.79 4-4v-72c0-2.21-1.79-4-4-4z" fill="#444"/></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_3_copy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
+<g>
+	<path style="fill:#FFFFFF;" d="M117.64,102.31H10.36c-2.74,0-3.83-1.71-3.83-3.83V29.52c0-2.12,1.71-3.83,3.83-3.83h107.27
+		c2.12,0,3.83,1.71,3.83,3.83v68.96C121.47,100.6,119.75,102.31,117.64,102.31z"/>
+	<path style="fill:#6FBFF0;stroke:#6FBFF0;stroke-width:0.5;stroke-miterlimit:10;" d="M89.01,56.73l30.4-27.29
+		c0.61-0.51,1.8-0.78,1.8-0.78s-1.39-1.52-3.22-0.09L70.26,66.44c-1.84,1.46-4.04,2.21-6.26,2.28c-2.22-0.07-4.42-0.82-6.26-2.28
+		L10.01,28.57c-1.83-1.43-3.22,0.09-3.22,0.09s1.19,0.28,1.8,0.78l30.04,26.97L7.81,99.57c-0.53,0.59,0.92,1.55,1.59,0.9
+		l33.66-40.09l12.37,11.1c2.44,2.19,5.5,3.32,8.58,3.39c3.08-0.07,6.13-1.2,8.58-3.39l12.29-11.04l33,40.02
+		c0.67,0.65,2.12-0.31,1.59-0.9L89.01,56.73z"/>
+	<path style="fill:none;stroke:#6FBFF0;stroke-width:4;stroke-miterlimit:10;" d="M117.64,102.31H10.36c-2.74,0-3.83-1.71-3.83-3.83
+		V29.52c0-2.12,1.71-3.83,3.83-3.83h107.27c2.12,0,3.83,1.71,3.83,3.83v68.96C121.47,100.6,119.75,102.31,117.64,102.31z"/>
+</g>
+</svg>
