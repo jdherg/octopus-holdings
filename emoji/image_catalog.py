@@ -49,6 +49,20 @@ def load():
 IMAGE_CATALOGS = load()
 
 
+def load_all_emoji_svgs():
+    all_resolved_emoji = set()
+    emoji_to_svgs = dict()
+    for emoji_set_name in EMOJI_CONFIG["priority"]:
+        emoji_to_svgs[emoji_set_name], set_emoji = load_emoji_set_svgs(
+            EMOJI_CONFIG["set_config"][emoji_set_name]
+        )
+        all_resolved_emoji |= set_emoji
+    return all_resolved_emoji, emoji_to_svgs
+
+
+ALL_RESOLVED_EMOJI, EMOJI_TO_SVGS = load_all_emoji_svgs()
+
+
 def main():
     unicode_emoji: set[str] = set(EMOJI_CATALOG.keys())
     svg_emoji: set[str] = set(
