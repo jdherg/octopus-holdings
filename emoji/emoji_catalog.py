@@ -32,13 +32,19 @@ SUBGROUP_LINE = re.compile(
 
 def parse_unicode_test_file(
     lines: list[str],
-) -> tuple[dict[str, Emoji], dict[str, int], dict[str, int], dict[str, list[str]]]:
+) -> tuple[
+    dict[str, Emoji],
+    dict[str, int],
+    dict[str, int],
+    dict[str, list[str]],
+    dict[str, list[str]],
+]:
     emoji: dict[str, Emoji] = {}
     group_counts: dict[str, int] = {}
     status_counts: dict[str, int] = {}
     group = ""
     subgroup = ""
-    names: dict[str, str] = {}
+    names: dict[str, list[str]] = defaultdict(list)
     variants: dict[str, list[str]] = defaultdict(list)
     for line in [line.strip() for line in lines if line.strip() != ""]:
         if line[0] == "#":
@@ -56,11 +62,11 @@ def parse_unicode_test_file(
         elif match := EMOJI_LINE.match(line):
             literal = match.group("emoji")
             name = match.group("name")
-            names[name] = literal
+            names[name].append(literal)
             if len(parts := name.split(":")) > 1:
                 base, _ = parts
                 if base in names:
-                    variants[names[base]].append(literal)
+                    variants[names[base][0]].append(literal)
             emoji[literal] = Emoji(
                 code_points=match.group("code_points").strip().split(),
                 group=group,
@@ -70,7 +76,7 @@ def parse_unicode_test_file(
                 subgroup=subgroup,
                 version=match.group("version"),
             )
-    return (emoji, group_counts, status_counts, variants)
+    return (emoji, group_counts, status_counts, variants, names)
 
 
 UNICODE_TEST_FILE_PATH = EMOJI_CONFIG["unicode_test_file"]
@@ -78,4 +84,4 @@ UNICODE_TEST_FILE_PATH = EMOJI_CONFIG["unicode_test_file"]
 with open(UNICODE_TEST_FILE_PATH, "r") as unicode_emoji_test_file:
     PARSED_EMOJI_METADATA = parse_unicode_test_file(unicode_emoji_test_file.readlines())
 
-EMOJI_CATALOG, _, _, EMOJI_VARIANTS = PARSED_EMOJI_METADATA
+EMOJI_CATALOG, _, _, EMOJI_VARIANTS, EMOJI_BY_NAME = PARSED_EMOJI_METADATA

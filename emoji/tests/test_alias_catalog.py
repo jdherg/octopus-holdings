@@ -33,3 +33,7 @@ class TestAliasesToEmoji(unittest.TestCase):
     def test_wave(self):
         self.assertEqual(ALIASES_TO_EMOJI.get("wave"), "👋")
         self.assertEqual(ALIASES_TO_EMOJI.get("wave:skin-tone-medium"), "👋🏽")
+
+    def test_chipmunk(self):
+        # One with FE0F, one without
+        self.assertIn(ALIASES_TO_EMOJI.get("chipmunk"), ("🐿️", "🐿"))
