@@ -1,6 +1,7 @@
 import json
 
 from emoji.config import EMOJI_CONFIG
+from emoji.emoji_catalog import EMOJI_CATALOG, EMOJI_VARIANTS
 from emoji.image_catalog import ALL_RESOLVED_EMOJI
 
 
@@ -18,15 +19,42 @@ def derive_codepoint_aliases(emoji):
     return aliases
 
 
+SKIN_TONES = {
+    "1F3FB": "skin-tone-light",
+    "1F3FC": "skin-tone-medium-light",
+    "1F3FD": "skin-tone-medium",
+    "1F3FE": "skin-tone-medium-dark",
+    "1F3FF": "skin-tone-dark",
+}
+
+
+def derive_skin_tone_aliases(literal: str, base_alias: str) -> dict[str, str]:
+    aliases: dict[str, str] = {}
+    if literal in EMOJI_VARIANTS:
+        for variant in EMOJI_VARIANTS[literal]:
+            skin_tones = ":".join(
+                [
+                    SKIN_TONES[p]
+                    for p in EMOJI_CATALOG[variant].code_points
+                    if p in SKIN_TONES
+                ]
+            )
+            aliases[f"{base_alias}:{skin_tones}"] = variant
+    return aliases
+
+
 def load_emoji_aliases():
     aliases_to_emoji = dict()
     # Load the gemoji aliases.
     with open(EMOJI_CONFIG["gemoji_alias_file"], "r") as gemoji_alias_file:
         gemoji_aliases = json.load(gemoji_alias_file)
     for entry in gemoji_aliases:
-        if "emoji" in entry and entry["emoji"] in ALL_RESOLVED_EMOJI:
+        if (literal := entry.get("emoji")) in ALL_RESOLVED_EMOJI:
             for alias in entry["aliases"]:
-                aliases_to_emoji[alias] = entry["emoji"]
+                aliases_to_emoji[alias] = literal
+                if entry.get("skin_tones", False):
+                    aliases_to_emoji.update(derive_skin_tone_aliases(literal, alias))
+
     # Add aliases derived from codepoints.
     variation_selector_16 = "\ufe0f"
     for emoji in ALL_RESOLVED_EMOJI:

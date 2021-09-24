@@ -1,7 +1,12 @@
 from collections import Counter
 import unittest
 
-from emoji.emoji_catalog import EMOJI_CATALOG, PARSED_EMOJI_METADATA
+from emoji.emoji_catalog import (
+    EMOJI_CATALOG,
+    EMOJI_VARIANTS,
+    PARSED_EMOJI_METADATA,
+    Emoji,
+)
 
 GROUP_COUNTS = PARSED_EMOJI_METADATA[1]
 STATUS_COUNTS = PARSED_EMOJI_METADATA[2]
@@ -29,3 +34,26 @@ class TestEmojiTestFileParsing(unittest.TestCase):
 
     def test_uniqueness(self):
         self.assertEqual(len(EMOJI_CATALOG.keys()), len(set(EMOJI_CATALOG.keys())))
+
+
+class TestEmojiRecords(unittest.TestCase):
+    def test_basic_emoji_record(self):
+        octopus = EMOJI_CATALOG["🐙"]
+        self.assertEqual(
+            octopus,
+            Emoji(
+                literal="🐙",
+                name="octopus",
+                code_points=["1F419"],
+                status="fully-qualified",
+                group="Animals & Nature",
+                subgroup="animal-marine",
+                version="0.6",
+            ),
+        )
+
+
+class TestVariants(unittest.TestCase):
+    def test_wave(self):
+        wave = "👋"
+        self.assertIn(wave, EMOJI_VARIANTS)
