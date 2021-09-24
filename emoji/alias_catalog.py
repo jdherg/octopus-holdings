@@ -1,7 +1,7 @@
 import json
 
 from emoji.config import EMOJI_CONFIG
-from emoji.emoji_catalog import EMOJI_CATALOG, EMOJI_VARIANTS
+from emoji.emoji_catalog import EMOJI_BY_NAME, EMOJI_CATALOG, EMOJI_VARIANTS
 from emoji.image_catalog import ALL_RESOLVED_EMOJI
 
 
@@ -49,7 +49,13 @@ def load_emoji_aliases():
     with open(EMOJI_CONFIG["gemoji_alias_file"], "r") as gemoji_alias_file:
         gemoji_aliases = json.load(gemoji_alias_file)
     for entry in gemoji_aliases:
-        if (literal := entry.get("emoji")) in ALL_RESOLVED_EMOJI:
+        literal = entry.get("emoji")
+        if literal not in ALL_RESOLVED_EMOJI:
+            # try other literals with the same name
+            for other in EMOJI_BY_NAME[EMOJI_CATALOG[literal].name]:
+                if other in ALL_RESOLVED_EMOJI:
+                    literal = other
+        if literal in ALL_RESOLVED_EMOJI:
             for alias in entry["aliases"]:
                 aliases_to_emoji[alias] = literal
                 if entry.get("skin_tones", False):
