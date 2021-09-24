@@ -1,4 +1,4 @@
-from collections import Counter, namedtuple
+from collections import Counter, defaultdict, namedtuple
 import re
 from typing import Sequence, Union
 
@@ -32,12 +32,14 @@ SUBGROUP_LINE = re.compile(
 
 def parse_unicode_test_file(
     lines: list[str],
-) -> tuple[dict[str, Emoji], dict[str, int], dict[str, int]]:
+) -> tuple[dict[str, Emoji], dict[str, int], dict[str, int], dict[str, list[str]]]:
     emoji: dict[str, Emoji] = {}
     group_counts: dict[str, int] = {}
     status_counts: dict[str, int] = {}
     group = ""
     subgroup = ""
+    names: dict[str, str] = {}
+    variants: dict[str, list[str]] = defaultdict(list)
     for line in [line.strip() for line in lines if line.strip() != ""]:
         if line[0] == "#":
             if match := GROUP_LINE.match(line):
@@ -52,16 +54,23 @@ def parse_unicode_test_file(
             elif match := SUBGROUP_LINE.match(line):
                 subgroup = match.group("subgroup_name")
         elif match := EMOJI_LINE.match(line):
-            emoji[match.group("emoji")] = Emoji(
+            literal = match.group("emoji")
+            name = match.group("name")
+            names[name] = literal
+            if len(parts := name.split(":")) > 1:
+                base, _ = parts
+                if base in names:
+                    variants[names[base]].append(literal)
+            emoji[literal] = Emoji(
                 code_points=match.group("code_points").strip().split(),
                 group=group,
-                literal=match.group("emoji"),
-                name=match.group("name"),
+                literal=literal,
+                name=name,
                 status=match.group("status"),
                 subgroup=subgroup,
                 version=match.group("version"),
             )
-    return (emoji, group_counts, status_counts)
+    return (emoji, group_counts, status_counts, variants)
 
 
 UNICODE_TEST_FILE_PATH = EMOJI_CONFIG["unicode_test_file"]
@@ -69,4 +78,4 @@ UNICODE_TEST_FILE_PATH = EMOJI_CONFIG["unicode_test_file"]
 with open(UNICODE_TEST_FILE_PATH, "r") as unicode_emoji_test_file:
     PARSED_EMOJI_METADATA = parse_unicode_test_file(unicode_emoji_test_file.readlines())
 
-EMOJI_CATALOG = PARSED_EMOJI_METADATA[0]
+EMOJI_CATALOG, _, _, EMOJI_VARIANTS = PARSED_EMOJI_METADATA
