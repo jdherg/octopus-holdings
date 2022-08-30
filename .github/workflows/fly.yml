@@ -7,6 +7,7 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
+    environment: octopus-holdings-prod
     steps:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
