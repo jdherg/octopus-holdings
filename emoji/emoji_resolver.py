@@ -52,5 +52,8 @@ def resolve_to_internal_path(external_path):
     return None
 
 
+ALL_RESOLVED_EMOJI_TUPLE = tuple(ALL_RESOLVED_EMOJI)
+
+
 def random_emoji():
-    return random.sample(ALL_RESOLVED_EMOJI, 1)[0]
+    return random.choice(ALL_RESOLVED_EMOJI_TUPLE)
